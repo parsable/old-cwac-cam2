@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/layout/cwac_cam2_record_time.xml",
+        "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/layout/cwac_cam2_record_time.xml"
+    },
+    {
+        "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/layout/cwac_cam2_confirm_fragment.xml",
+        "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/layout/cwac_cam2_confirm_fragment.xml"
+    },
+    {
+        "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/layout/cwac_cam2_fragment.xml",
+        "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/layout/cwac_cam2_fragment.xml"
+    }
+]

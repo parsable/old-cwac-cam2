@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/confirmImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include layout="@layout/cwac_cam2_record_time"/>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/cwac_cam2_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cwac_cam2_retry"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/cwac_cam2_ic_close_white"
+        fab:fab_colorNormal="@color/cwac_cam2_picture_fab"
+        fab:fab_colorPressed="@color/cwac_cam2_picture_fab_pressed"/>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/cwac_cam2_retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/cwac_cam2_confirm"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/cwac_cam2_ic_refresh_white"
+        fab:fab_colorNormal="@color/cwac_cam2_picture_fab"
+        fab:fab_colorPressed="@color/cwac_cam2_picture_fab_pressed"/>
+
+    <com.github.clans.fab.FloatingActionButton
+        android:id="@+id/cwac_cam2_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@drawable/cwac_cam2_ic_check_white"
+        fab:fab_colorNormal="@color/cwac_cam2_picture_fab"
+        fab:fab_colorPressed="@color/cwac_cam2_picture_fab_pressed"/>
+</RelativeLayout>

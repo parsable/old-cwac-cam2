@@ -1,0 +1,285 @@
+[
+    {
+        "outputFile": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 55,
+                    "endOffset": 106
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/colors.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 111,
+                    "endColumn": 63,
+                    "endOffset": 170
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/colors.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 175,
+                    "endColumn": 57,
+                    "endOffset": 228
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/colors.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 233,
+                    "endColumn": 65,
+                    "endOffset": 294
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/colors.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 6,
+                    "startColumn": 4,
+                    "startOffset": 299,
+                    "endColumn": 57,
+                    "endOffset": 352
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/colors.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 7,
+                    "startColumn": 4,
+                    "startOffset": 357,
+                    "endColumn": 65,
+                    "endOffset": 418
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/colors.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 10,
+                    "startColumn": 4,
+                    "startOffset": 3947,
+                    "endColumn": 72,
+                    "endOffset": 4015
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 11,
+                    "startColumn": 4,
+                    "startOffset": 4020,
+                    "endColumn": 67,
+                    "endOffset": 4083
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 12,
+                    "startColumn": 4,
+                    "startOffset": 4088,
+                    "endColumn": 63,
+                    "endOffset": 4147
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 4152,
+                    "endColumn": 67,
+                    "endOffset": 4215
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 14,
+                    "startColumn": 4,
+                    "startOffset": 4220,
+                    "endColumn": 66,
+                    "endOffset": 4282
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 4287,
+                    "endColumn": 63,
+                    "endOffset": 4346
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/dimens.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 16,
+                    "startColumn": 4,
+                    "startOffset": 4351,
+                    "endColumn": 44,
+                    "endOffset": 4391
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/values/values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 17,
+                    "startColumn": 4,
+                    "startOffset": 4396,
+                    "endColumn": 46,
+                    "endOffset": 4438
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/values/values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 18,
+                    "startColumn": 4,
+                    "startOffset": 4443,
+                    "endColumn": 47,
+                    "endOffset": 4486
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/values/values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 4491,
+                    "endColumn": 38,
+                    "endOffset": 4525
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/values/values.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 4530,
+                    "endColumn": 79,
+                    "endOffset": 4605
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 21,
+                    "startColumn": 4,
+                    "startOffset": 4610,
+                    "endColumn": 53,
+                    "endOffset": 4659
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 4664,
+                    "endColumn": 70,
+                    "endOffset": 4730
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 23,
+                    "startColumn": 4,
+                    "startOffset": 4735,
+                    "endColumn": 43,
+                    "endOffset": 4774
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 314,
+                        "endColumn": 43,
+                        "endOffset": 353
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 24,
+                    "startColumn": 4,
+                    "startOffset": 4779,
+                    "endColumn": 53,
+                    "endOffset": 4828
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 7,
+                        "startColumn": 4,
+                        "startOffset": 358,
+                        "endColumn": 53,
+                        "endOffset": 407
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 25,
+                    "startColumn": 4,
+                    "startOffset": 4833,
+                    "endColumn": 53,
+                    "endOffset": 4882
+                },
+                "from": {
+                    "file": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/values/strings.xml"
+                }
+            }
+        ]
+    }
+]

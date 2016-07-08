@@ -9,7 +9,7 @@
 
 # IntelliJ
 .idea/
-*.iml
+*.imls
 *.iws
 *.ipr
 
@@ -25,12 +25,3 @@ local.properties
 
 # Mac
 .DS_Store
-
-# Private key credentials
-keys/
-keystore.properties
-
-# App db
-director.db
-
-spoon-output

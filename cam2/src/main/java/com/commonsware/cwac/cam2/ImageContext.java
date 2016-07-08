@@ -121,9 +121,7 @@ public class ImageContext {
                                         jpegOriginal.length);
                         Bitmap rotated = rotateViaMatrix(original, orientation);
 
-                        if(!exif.setTagValue(ExifInterface.TAG_ORIENTATION, 1)){
-
-                        }
+                        exif.setTagValue(ExifInterface.TAG_ORIENTATION, 1);
                         exif.removeCompressedThumbnail();
 
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();

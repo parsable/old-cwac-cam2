@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="choose_media_app">选择相机应用</string>
+    <string name="switch_camera">切换摄像头</string>
+</resources>

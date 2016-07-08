@@ -1,10 +1,10 @@
 /***
  * Copyright (c) 2015-2016 CommonsWare, LLC
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may obtain
  * a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +18,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
 import android.media.MediaScannerConnection;
@@ -26,6 +25,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -33,9 +34,9 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -72,36 +73,14 @@ public class CameraFragment extends Fragment {
     private ScaleGestureDetector scaleDetector;
     private boolean inSmoothPinchZoom = false;
     private SeekBar zoomSlider;
+    private Chronometer chronometer;
+    private ReverseChronometer reverseChronometer;
     private FloatingActionButton fabSwitchApp;
-    private long recordingTimeStart = 0;
-    private long recordingTimeEnd = 0;
-    private TextView recordTimeText = null;
+    private long startTime, endTime;
 
-    private Runnable recordingTimeUpdate = new Runnable() {
-        @Override
-        public void run() {
-
-            if (!isAdded() || getActivity() == null || getView() == null) {
-                return;
-            }
-
-            if (recordingTimeStart == 0) {
-                recordTimeText.setText("00:00");
-            } else if (isVideoRecording) {
-                recordingTimeEnd = System.currentTimeMillis();
-                long diff = (recordingTimeEnd - recordingTimeStart) / 1000;
-                long mins = diff / 60;
-                long secs = diff % 60;
-                String minsText = mins < 10 ? "0" + mins : Long.toString(mins);
-                String secsText = secs < 10 ? "0" + secs : Long.toString(secs);
-                recordTimeText.setText(minsText + ":" + secsText);
-            }
-            View view = CameraFragment.this.getView();
-            if (view != null) {
-                view.postDelayed(this, 200);
-            }
-        }
-    };
+    public long getRecordingDuration() {
+        return endTime - startTime;
+    }
 
     public static class OnSwitchCameraAppRequestEvent {
     }
@@ -187,30 +166,26 @@ public class CameraFragment extends Fragment {
         super.onResume();
     }
 
-    public long getRecordingDuration() {
-        return recordingTimeEnd - recordingTimeStart;
-    }
-
     @Override
     public void onHiddenChanged(boolean isHidden) {
         super.onHiddenChanged(isHidden);
-        recordingTimeStart = 0;
         if (!isHidden) {
-            recordingTimeEnd = 0;
-            ActionBar ab = getActivity().getActionBar();
+            ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
             if (ab != null) {
-                ab.setBackgroundDrawable(getActivity()
-                        .getResources()
-                        .getDrawable(R.drawable.cwac_cam2_action_bar_bg_transparent));
-                ab.setTitle("");
+                ab.hide();
+//                ab.setBackgroundDrawable(getActivity()
+//                        .getResources()
+//                        .getDrawable(R.drawable.cwac_cam2_action_bar_bg_transparent));
+//                ab.setTitle("");
+//
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                    ab.setDisplayHomeAsUpEnabled(false);
+//                } else {
+//                    ab.setDisplayShowHomeEnabled(false);
+//                    ab.setHomeButtonEnabled(false);
+//                }
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ab.setDisplayHomeAsUpEnabled(false);
-                } else {
-                    ab.setDisplayShowHomeEnabled(false);
-                    ab.setHomeButtonEnabled(false);
-                }
             }
 
             if (fabPicture != null) {
@@ -276,13 +251,12 @@ public class CameraFragment extends Fragment {
         previewStack = (ViewGroup) v.findViewById(R.id.cwac_cam2_preview_stack);
 
         progress = v.findViewById(R.id.cwac_cam2_progress);
-        recordTimeText = (TextView) v.findViewById(R.id.cwac_cam2_timestamp);
         fabPicture = (FloatingActionButton) v.findViewById(R.id.cwac_cam2_picture);
 
         if (isVideo()) {
             fabPicture.setImageResource(R.drawable.cwac_cam2_ic_videocam);
-            recordTimeText.setVisibility(View.VISIBLE);
-            recordTimeText.setText("00:00");
+            chronometer = (Chronometer) v.findViewById(R.id.chrono);
+            reverseChronometer = (ReverseChronometer) v.findViewById(R.id.rchrono);
         }
 
         final FloatingActionMenu fabMenu =
@@ -507,8 +481,6 @@ public class CameraFragment extends Fragment {
 
                 ctlr.recordVideo(b.build());
                 isVideoRecording = true;
-                recordingTimeStart = System.currentTimeMillis();
-                recordTimeText.post(recordingTimeUpdate);
                 fabPicture.setImageResource(
                         R.drawable.cwac_cam2_ic_stop);
                 fabPicture.setColorNormalResId(
@@ -516,6 +488,7 @@ public class CameraFragment extends Fragment {
                 fabPicture.setColorPressedResId(
                         R.color.cwac_cam2_recording_fab_pressed);
                 fabSwitch.setEnabled(false);
+                configureChronometer();
                 fabSwitchApp.setEnabled(false);
             } catch (Exception e) {
                 Log.e(getClass().getSimpleName(),
@@ -530,6 +503,9 @@ public class CameraFragment extends Fragment {
     }
 
     private void stopVideoRecording(boolean abandon) {
+        endTime = SystemClock.elapsedRealtime();
+        chronometer.stop();
+        reverseChronometer.stop();
         setVideoFABToNormal();
 
         try {
@@ -559,6 +535,40 @@ public class CameraFragment extends Fragment {
 
     private boolean isVideo() {
         return (getArguments().getBoolean(ARG_IS_VIDEO, false));
+    }
+
+    private ChronoType getChronoType() {
+        ChronoType chronoType =
+                (ChronoType) getArguments().getSerializable(ARG_CHRONOTYPE);
+
+        if (chronoType == null) {
+            chronoType = ChronoType.NONE;
+        }
+
+        return (chronoType);
+    }
+
+    private void configureChronometer() {
+        startTime = SystemClock.elapsedRealtime();
+        if (getChronoType() == ChronoType.COUNT_UP) {
+            chronometer.setVisibility(View.VISIBLE);
+            chronometer.start();
+        } else if (getChronoType() == ChronoType.COUNT_DOWN) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                chronometer.setVisibility(View.VISIBLE);
+                chronometer.setBase(SystemClock.elapsedRealtime() +
+                        getArguments().getInt(ARG_DURATION_LIMIT, 0));
+                chronometer.setCountDown(true);
+                chronometer.start();
+            } else {
+                reverseChronometer.setVisibility(View.VISIBLE);
+                reverseChronometer
+                        .setOverallDuration(getArguments()
+                                .getInt(ARG_DURATION_LIMIT, 0) / 1000);
+                reverseChronometer.reset();
+                reverseChronometer.run();
+            }
+        }
     }
 
     private void prepController() {

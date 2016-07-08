@@ -15,7 +15,6 @@
 package com.commonsware.cwac.cam2;
 
 import android.annotation.TargetApi;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -28,6 +27,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +47,7 @@ import de.greenrobot.event.EventBus;
  * Base class for activities that integrate with CameraFragment
  * for taking pictures or recording video.
  */
-abstract public class AbstractCameraActivity extends Activity {
+abstract public class AbstractCameraActivity extends AppCompatActivity {
     /**
      * List<FlashMode> indicating the desired flash modes,
      * or null for always taking the default. These are
@@ -218,28 +219,22 @@ abstract public class AbstractCameraActivity extends Activity {
     @TargetApi(23)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        Utils.validateEnvironment(this);
-
-        OrientationLockMode olockMode =
-                (OrientationLockMode) getIntent().getSerializableExtra(EXTRA_ORIENTATION_LOCK_MODE);
-
-        lockOrientation(olockMode);
-
         if (needsOverlay()) {
             getWindow().requestFeature(Window.FEATURE_ACTION_BAR_OVERLAY);
+        }
+        super.onCreate(savedInstanceState);
 
+        if(needsOverlay()){
             // the following is nasty stuff to get rid of the action
             // bar drop shadow, which still exists on some devices
             // despite going into overlay mode (Samsung Galaxy S3, I'm
             // looking at you)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ActionBar ab = getActionBar();
+                ActionBar ab = getSupportActionBar();
 
                 if (ab != null) {
-                    getActionBar().setElevation(0);
+                    ab.setElevation(0);
                 }
             } else {
                 View v = ((ViewGroup) getWindow().getDecorView()).getChildAt(0);
@@ -250,12 +245,20 @@ abstract public class AbstractCameraActivity extends Activity {
             }
 
         } else if (!needsActionBar()) {
-            ActionBar ab = getActionBar();
+            ActionBar ab = getSupportActionBar();
 
             if (ab != null) {
                 ab.hide();
             }
         }
+
+        Utils.validateEnvironment(this);
+
+        OrientationLockMode olockMode =
+                (OrientationLockMode) getIntent().getSerializableExtra(EXTRA_ORIENTATION_LOCK_MODE);
+
+        lockOrientation(olockMode);
+
 
         if (useRuntimePermissions()) {
             String[] perms = netPermissions(getNeededPermissions());

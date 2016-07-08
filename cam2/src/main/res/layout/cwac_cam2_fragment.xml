@@ -22,8 +22,6 @@
         android:layout_centerInParent="true"
         android:visibility="visible"/>
 
-   <include layout="@layout/cwac_cam2_record_time" />
-
     <com.github.clans.fab.FloatingActionButton
         android:id="@+id/cwac_cam2_picture"
         android:layout_width="wrap_content"
@@ -80,4 +78,30 @@
         android:layout_toStartOf="@id/cwac_cam2_picture"
         android:max="100"
         android:visibility="gone"/>
+
+    <Chronometer
+        android:id="@+id/chrono"
+        style="@style/Chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/cwac_cam2_fragment_chrono_margin"
+        android:layout_marginRight="@dimen/cwac_cam2_fragment_chrono_margin"
+        android:layout_marginTop="@dimen/cwac_cam2_fragment_chrono_margin"
+        android:visibility="gone" />
+
+    <com.commonsware.cwac.cam2.ReverseChronometer
+        android:id="@+id/rchrono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/cwac_cam2_fragment_chrono_margin"
+        android:layout_marginRight="@dimen/cwac_cam2_fragment_chrono_margin"
+        android:layout_marginTop="@dimen/cwac_cam2_fragment_chrono_margin"
+        style="@style/Chronometer"
+        android:visibility="gone" />
 </RelativeLayout>

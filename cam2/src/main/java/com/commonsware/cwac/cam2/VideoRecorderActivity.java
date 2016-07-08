@@ -17,6 +17,7 @@ package com.commonsware.cwac.cam2;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 
@@ -66,6 +67,7 @@ public class VideoRecorderActivity extends AbstractCameraActivity {
     protected void configEngine(CameraEngine engine) {
         // no-op
     }
+
 
     @Override
     protected CameraFragment buildFragment() {

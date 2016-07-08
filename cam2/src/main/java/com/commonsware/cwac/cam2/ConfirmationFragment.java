@@ -1,10 +1,10 @@
 /***
  * Copyright (c) 2015 CommonsWare, LLC
- * <p/>
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may obtain
  * a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -17,8 +17,15 @@ package com.commonsware.cwac.cam2;
 import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,7 +35,8 @@ public class ConfirmationFragment extends Fragment {
     private static final String ARG_NORMALIZE_ORIENTATION =
             "normalizeOrientation";
     private Float quality;
-    private TextView recordTimeText;
+    private CameraEngine.VideoTakenEvent videoContext;
+    private TextView tvVideoDuration;
 
     public interface BaseContract<T> {
         void completeRequest(T context, boolean isOK);
@@ -42,9 +50,9 @@ public class ConfirmationFragment extends Fragment {
     public interface Contract extends BaseContract<ImageContext> {
     }
 
-    private ImageView iv;
+
+    private ImageView ivConfirm;
     private ImageContext imageContext;
-    private CameraEngine.VideoTakenEvent videoContext;
 
     public static ConfirmationFragment newInstance(boolean normalizeOrientation) {
         ConfirmationFragment result = new ConfirmationFragment();
@@ -73,91 +81,80 @@ public class ConfirmationFragment extends Fragment {
         super.onAttach(activity);
     }
 
-    public void setRecordingDuration(long duration) {
-        if (getView() == null) {
-            return;
-        }
-
-        if (recordTimeText == null) {
-            return;
-        }
-
-        if (duration == 0) {
-            recordTimeText.setVisibility(View.INVISIBLE);
-            return;
-        }
-
-        recordTimeText.setVisibility(View.VISIBLE);
-
-        long diff = duration / 1000;
-        long mins = diff / 60;
-        long secs = diff % 60;
-        String minsText = mins < 10 ? "0" + mins : Long.toString(mins);
-        String secsText = secs < 10 ? "0" + secs : Long.toString(secs);
-        recordTimeText.setText(minsText + ":" + secsText);
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.cwac_cam2_confirm_fragment, container, false);
+        View layout = inflater.inflate(R.layout.cwac_cam2_confirm_fragment, container, false);
+        ivConfirm = (ImageView) layout.findViewById(R.id.iv_confirm);
+        //Look Pretty
+        ivConfirm.setBackgroundColor(Color.BLACK);
 
-        iv = (ImageView) v.findViewById(R.id.confirmImageView);
+        tvVideoDuration = (TextView) layout.findViewById(R.id.tv_timestamp);
 
         if (imageContext != null) {
             loadImage(quality);
         }
 
-        v.findViewById(R.id.cwac_cam2_cancel).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                completeRequest(false);
-            }
-        });
-
-        v.findViewById(R.id.cwac_cam2_retry).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imageContext = null;
-                videoContext = null;
-                getContract().retakePicture();
-            }
-        });
-        recordTimeText = (TextView) v.findViewById(R.id.cwac_cam2_timestamp);
-        v.findViewById(R.id.cwac_cam2_confirm).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                completeRequest(true);
-            }
-        });
-
-        return v;
+        return layout;
     }
 
-    private void completeRequest(boolean isOK) {
-        if (getContract() instanceof VideoContract) {
-            getContract().completeRequest(videoContext, isOK);
-        } else {
-            getContract().completeRequest(imageContext, isOK);
+    @Override
+    public void onHiddenChanged(boolean isHidden) {
+        super.onHiddenChanged(isHidden);
+
+        if (!isHidden) {
+            ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+
+            if (ab == null) {
+                throw new IllegalStateException(
+                        "CameraActivity confirmation requires an action bar!");
+            } else {
+                ab.show();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    ab.setDisplayHomeAsUpEnabled(true);
+                    ab.setHomeAsUpIndicator(R.drawable.cwac_cam2_ic_close_white);
+                } else {
+                    ab.setIcon(R.drawable.cwac_cam2_ic_close_white);
+                    ab.setDisplayShowHomeEnabled(true);
+                    ab.setHomeButtonEnabled(true);
+                }
+            }
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.cwac_cam2_confirm, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            getContract().completeRequest(getMediaContext(), false);
+        } else if (item.getItemId() == R.id.cwac_cam2_ok) {
+            getContract().completeRequest(getMediaContext(), true);
+        } else if (item.getItemId() == R.id.cwac_cam2_retry) {
+            getContract().retakePicture();
+            imageContext = null;
+            videoContext = null;
+        } else {
+            return (super.onOptionsItemSelected(item));
+        }
+
+        return (true);
+    }
+
+    private Object getMediaContext() {
+        return imageContext == null ? videoContext : imageContext;
     }
 
     public void setImage(ImageContext imageContext, Float quality) {
         this.imageContext = imageContext;
         this.quality = quality;
 
-        if (iv != null) {
+        if (ivConfirm != null) {
             loadImage(quality);
         }
-    }
-
-    public void setVideoThumbnail(CameraEngine.VideoTakenEvent event, Bitmap bitmap) {
-        this.videoContext = event;
-        iv.setImageBitmap(bitmap);
-    }
-
-    public boolean hasConfirmation() {
-        return imageContext != null || videoContext != null;
     }
 
     private BaseContract getContract() {
@@ -165,7 +162,39 @@ public class ConfirmationFragment extends Fragment {
     }
 
     private void loadImage(Float quality) {
-        iv.setImageBitmap(imageContext.buildPreviewThumbnail(getActivity(),
+        ivConfirm.setImageBitmap(imageContext.buildPreviewThumbnail(getActivity(),
                 quality, getArguments().getBoolean(ARG_NORMALIZE_ORIENTATION)));
+    }
+
+    public void setVideoThumbnail(CameraEngine.VideoTakenEvent event, Bitmap bitmap) {
+        this.videoContext = event;
+        ivConfirm.setImageBitmap(bitmap);
+    }
+
+    public boolean isWaitingForConfirmation() {
+        return imageContext != null || videoContext != null;
+    }
+
+    public void setRecordingDuration(long duration) {
+        if (getView() == null) {
+            return;
+        }
+        if (tvVideoDuration == null) {
+            return;
+        }
+
+        if (duration == 0) {
+            tvVideoDuration.setVisibility(View.INVISIBLE);
+            return;
+        }
+
+        tvVideoDuration.setVisibility(View.VISIBLE);
+
+        long diff = duration / 1000;
+        long mins = diff / 60;
+        long secs = diff % 60;
+        String minsText = mins < 10 ? "0" + mins : Long.toString(mins);
+        String secsText = secs < 10 ? "0" + secs : Long.toString(secs);
+        tvVideoDuration.setText(minsText + ":" + secsText);
     }
 }

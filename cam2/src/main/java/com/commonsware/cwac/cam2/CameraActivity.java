@@ -20,8 +20,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
 
-import com.commonsware.cwac.cam2.util.Utils;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +107,7 @@ public class CameraActivity extends AbstractCameraActivity
                     .commit();
         }
 
-        if (!cameraFrag.isVisible() && !confirmFrag.isVisible() && !confirmFrag.hasConfirmation()) {
+        if (!cameraFrag.isVisible() && !confirmFrag.isVisible() && !confirmFrag.isWaitingForConfirmation()) {
             getFragmentManager()
                     .beginTransaction()
                     .hide(confirmFrag)

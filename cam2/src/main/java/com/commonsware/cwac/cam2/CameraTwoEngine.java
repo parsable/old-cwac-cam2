@@ -132,7 +132,7 @@ public class CameraTwoEngine extends CameraEngine {
           }
           catch (CameraAccessException e) {
             getBus().post(
-              new CameraEngine.CameraDescriptorsEvent(e));
+              new CameraDescriptorsEvent(e));
 
             if (isDebug()) {
               Log.e(getClass().getSimpleName(),
@@ -167,7 +167,7 @@ public class CameraTwoEngine extends CameraEngine {
           });
 
         getBus().post(
-          new CameraEngine.CameraDescriptorsEvent(result));
+          new CameraDescriptorsEvent(result));
       }
     });
   }

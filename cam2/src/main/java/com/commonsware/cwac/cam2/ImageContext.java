@@ -17,6 +17,7 @@ package com.commonsware.cwac.cam2;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -98,10 +99,11 @@ public class ImageContext {
 
     public int getOrientation() throws IOException {
         ExifTag tag = getExifInterface().getTag(ExifInterface.TAG_ORIENTATION);
+        boolean isPortrait = ctxt.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
         //Hack for Nexus 6P front camera is inverted
         if ("Huawei".equals(Build.MANUFACTURER) &&
                 "angler".equals(Build.PRODUCT) && descriptor != null &&
-                descriptor.isFrontCamera() && tag == null) {
+                descriptor.isFrontCamera() && tag == null && isPortrait) {
             return 3;
         }
         return (tag == null ? -1 : tag.getValueAsInt(-1));

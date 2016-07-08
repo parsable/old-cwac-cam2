@@ -1,7 +1,15 @@
 [
     {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_slide_in_from_right.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_slide_in_from_right.xml"
+    },
+    {
         "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/cwac_cam2_fade_in.xml",
         "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/anim/cwac_cam2_fade_in.xml"
+    },
+    {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_slide_in_from_left.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_slide_in_from_left.xml"
     },
     {
         "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/cwac_cam2_fade_out.xml",
@@ -12,6 +20,10 @@
         "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_slide_out_to_left.xml"
     },
     {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_slide_out_to_left.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_slide_out_to_left.xml"
+    },
+    {
         "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_slide_out_to_right.xml",
         "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_slide_out_to_right.xml"
     },
@@ -20,8 +32,28 @@
         "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_slide_in_from_right.xml"
     },
     {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_scale_down.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_scale_down.xml"
+    },
+    {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_scale_up.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_scale_up.xml"
+    },
+    {
         "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_scale_up.xml",
         "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_scale_up.xml"
+    },
+    {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/cwac_cam2_fade_out.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/anim/cwac_cam2_fade_out.xml"
+    },
+    {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_slide_out_to_right.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/exploded-aar/com.github.clans/fab/1.6.2/res/anim/fab_slide_out_to_right.xml"
+    },
+    {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/cwac_cam2_fade_in.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/anim/cwac_cam2_fade_in.xml"
     },
     {
         "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/anim/fab_slide_in_from_left.xml",

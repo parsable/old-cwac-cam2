@@ -4,6 +4,14 @@
         "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/drawable/cwac_cam2_action_bar_bg_translucent.xml"
     },
     {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/drawable/cwac_cam2_action_bar_bg_translucent.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/drawable/cwac_cam2_action_bar_bg_translucent.xml"
+    },
+    {
+        "merged": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/drawable/cwac_cam2_action_bar_bg_transparent.xml",
+        "source": "/Users/Brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/drawable/cwac_cam2_action_bar_bg_transparent.xml"
+    },
+    {
         "merged": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/build/intermediates/res/merged/release/drawable/cwac_cam2_action_bar_bg_transparent.xml",
         "source": "/Users/brandon/Documents/parsable/droid/cwac-cam2/cam2/src/main/res/drawable/cwac_cam2_action_bar_bg_transparent.xml"
     }

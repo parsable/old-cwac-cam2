@@ -1,0 +1,27 @@
+/SystemAPKs/JellyBean_partitions
+
+.gradle
+
+# Eclipse
+.classpath 
+.project 
+.settings
+
+# IntelliJ
+.idea/
+*.imls
+*.iws
+*.ipr
+
+cam2/gen/
+cam2/out/
+cam2/build/
+
+# Maven
+target/
+
+# Android Studio
+local.properties
+
+# Mac
+.DS_Store

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="cwac_cam2_ok">OK</string>
-  <string name="cwac_cam2_retry">Try again</string>
+    <string name="choose_media_app">Choose camera application</string>
+    <string name="switch_camera">Switch View</string>
+    <string name="camera_error">Camera Error</string>
+    <string name="camera_connect_failure">Can\'t connect to the Camera</string>
+    <string name="cwac_cam2_ok">OK</string>
+    <string name="cwac_cam2_retry">Try again</string>
 </resources>

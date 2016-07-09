@@ -85,7 +85,7 @@ public class ConfirmationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.cwac_cam2_confirm_fragment, container, false);
-        ivConfirm = (ImageView) layout.findViewById(R.id.iv_confirm);
+        ivConfirm = (ImageView) layout.findViewById(R.id.cwac_cam2_iv_confirm);
         //Look Pretty
         ivConfirm.setBackgroundColor(Color.BLACK);
 

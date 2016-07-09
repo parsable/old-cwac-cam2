@@ -6,7 +6,7 @@
     android:background="@android:color/black">
 
     <ImageView
-        android:id="@+id/iv_confirm"
+        android:id="@+id/cwac_cam2_iv_confirm"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

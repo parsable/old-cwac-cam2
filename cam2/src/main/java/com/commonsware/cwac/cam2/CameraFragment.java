@@ -504,8 +504,12 @@ public class CameraFragment extends Fragment {
 
     private void stopVideoRecording(boolean abandon) {
         endTime = SystemClock.elapsedRealtime();
-        chronometer.stop();
-        reverseChronometer.stop();
+        if (chronometer != null) {
+            chronometer.stop();
+        }
+        if (reverseChronometer != null) {
+            reverseChronometer.stop();
+        }
         setVideoFABToNormal();
 
         try {

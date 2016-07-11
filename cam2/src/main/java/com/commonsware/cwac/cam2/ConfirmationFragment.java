@@ -95,6 +95,9 @@ public class ConfirmationFragment extends Fragment {
             loadImage(quality);
         }
 
+        //Same hack as the CameraFragment
+        onHiddenChanged(false);
+
         return layout;
     }
 

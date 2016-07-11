@@ -12,6 +12,7 @@ cam2/.idea/
 cam2/*.imls
 cam2/*.iws
 cam2/*.ipr
+cam2/*.iml
 
 cam2/gen/
 cam2/out/

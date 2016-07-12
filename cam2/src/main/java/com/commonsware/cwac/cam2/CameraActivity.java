@@ -19,7 +19,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.view.MenuItem;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -108,7 +107,8 @@ public class CameraActivity extends AbstractCameraActivity
                     .commit();
         }
 
-        if (!cameraFrag.isVisible() && !confirmFrag.isVisible() && !confirmFrag.isWaitingForConfirmation()) {
+        if (!cameraFrag.isVisible() && !confirmFrag.isVisible() &&
+                !confirmFrag.isWaitingForConfirmation()) {
             getFragmentManager()
                     .beginTransaction()
                     .hide(confirmFrag)
@@ -257,7 +257,7 @@ public class CameraActivity extends AbstractCameraActivity
         }
 
         public IntentBuilder(Context ctxt, Intent intent) {
-            super(ctxt,intent);
+            super(ctxt, intent);
         }
 
         @Override

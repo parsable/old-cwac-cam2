@@ -29,6 +29,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
@@ -170,7 +171,7 @@ public class CameraFragment extends Fragment {
     public void onHiddenChanged(boolean isHidden) {
         super.onHiddenChanged(isHidden);
         //When the device rotates this gets called even when it is hidden
-        if (!isHidden && isVisible()) {
+        if (!isHidden) {
             ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
             if (ab != null) {
@@ -285,9 +286,7 @@ public class CameraFragment extends Fragment {
             }
         });
 
-        onHiddenChanged(false); // hack, since this does not get
         // called on initial display
-
         fabPicture.setEnabled(false);
         fabSwitch.setEnabled(false);
 
@@ -296,6 +295,12 @@ public class CameraFragment extends Fragment {
         }
 
         return (v);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onHiddenChanged(isHidden()); // hack, since this does not get
     }
 
     public void shutdown() {

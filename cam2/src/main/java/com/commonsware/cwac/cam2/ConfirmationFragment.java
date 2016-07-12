@@ -1,10 +1,10 @@
 /***
  * Copyright (c) 2015 CommonsWare, LLC
- * <p>
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may
  * not use this file except in compliance with the License. You may obtain
  * a copy of the License at http://www.apache.org/licenses/LICENSE-2.0
- * <p>
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,7 +18,6 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -67,7 +66,6 @@ public class ConfirmationFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setRetainInstance(true);
         setHasOptionsMenu(true);
     }
@@ -94,33 +92,34 @@ public class ConfirmationFragment extends Fragment {
         if (imageContext != null) {
             loadImage(quality);
         }
+        return layout;
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
         //Same hack as the CameraFragment
-        onHiddenChanged(false);
-
-        return layout;
+        onHiddenChanged(isHidden());
     }
 
     @Override
     public void onHiddenChanged(boolean isHidden) {
         super.onHiddenChanged(isHidden);
+        //The fragment is hidden while the take phone is open
 
-        if (!isHidden) {
-            ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
-            if (ab == null) {
-                throw new IllegalStateException(
-                        "CameraActivity confirmation requires an action bar!");
-            } else {
+        if (ab == null) {
+            throw new IllegalStateException(
+                    "CameraActivity confirmation requires an action bar!");
+        } else {
+            if (!isHidden) {
                 ab.show();
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    ab.setDisplayHomeAsUpEnabled(true);
-                    ab.setHomeAsUpIndicator(R.drawable.cwac_cam2_ic_close_white);
-                } else {
-                    ab.setIcon(R.drawable.cwac_cam2_ic_close_white);
-                    ab.setDisplayShowHomeEnabled(true);
-                    ab.setHomeButtonEnabled(true);
-                }
+                ab.setDisplayHomeAsUpEnabled(true);
+                ab.setHomeButtonEnabled(true);
+            } else {
+                ab.hide();
             }
         }
     }
